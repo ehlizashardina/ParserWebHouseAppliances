@@ -1,22 +1,33 @@
 import re
 from SplitSent import SplitSent
+
 def main():
+    print("*******")
+    print("ПАСКИ - Программа для автоматического составления краткого изложения")
+    print("*******")
+
     print ("Введите название файла (например, text.txt):")
 
     try:
         file=open(input(),'r')
     except IOError as e:
-        print("Не удалось открыть файл")
-        exit(1)
+        print("Ошибка: Не удалось открыть файл")
+        return 
     else:
         with file:
             print ("Введите процент сжатия от 0 до 100:")
             percent=input()
-            if (percent.isnumeric() and int(percent)>=0 and int(percent)<=100):
-                text=file.read()
-                a=SplitSent.get_sentences(text)
+            if not(percent.isnumeric() and int(percent)>=0 and int(percent)<=100):
+                print ("Ошибка: Неверное число")
+                return
+             
             else: 
-                print ("не ок")
+              text=file.read()
+              listSents=SplitSent.get_sentences(text)
 
-    
+              listWords=[]
+              for sent in listSents:
+                 for  word in SplitSent.get_words(sent):
+                    listWords.append(word)
+                    print(word)
 main()

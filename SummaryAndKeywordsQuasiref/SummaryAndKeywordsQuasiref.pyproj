@@ -21,7 +21,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Quasiref.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sentence.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SplitSent.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stem.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SummaryAndKeywordsQuasiref.py" />
