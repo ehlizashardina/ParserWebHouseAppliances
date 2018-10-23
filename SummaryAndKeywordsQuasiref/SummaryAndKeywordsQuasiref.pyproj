@@ -21,9 +21,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="stop_words.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Quasiref.py">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +28,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SplitSent.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stem.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SummaryAndKeywordsQuasiref.py" />
