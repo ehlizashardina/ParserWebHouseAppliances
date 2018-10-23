@@ -4,10 +4,6 @@ from Quasiref import *
 from pymystem3 import Mystem
 import string
 
-
-
-
-
 def main():
     print("*******")
     print("ПАСКИ - Программа для автоматического составления краткого изложения")
@@ -38,11 +34,11 @@ def main():
 
               #получаем нормализованные слова
               for sent in listSents:
-                 sent.text=sent.text.translate(str.maketrans('', '', string.punctuation)) #убрали знаки пункутации
-                 sent.token = mystem.lemmatize(sent.text) #нормализовали
+                 text=sent.text.translate(str.maketrans('', '', string.punctuation)) #убрали знаки пункутации
+                 sent.token = mystem.lemmatize(text) #нормализовали
                  sent.token= SplitSent.modification(sent.token, punctuation) #убрали пустые слова
               
-              listSents=Quasiref.WeightCount(listSents) #получили список предложений с весами
-              f=1
+              Quasiref.RunQuasiref(listSents,percent) #вывод текста квазиреферирование по частоте
+              
                     
 main()
