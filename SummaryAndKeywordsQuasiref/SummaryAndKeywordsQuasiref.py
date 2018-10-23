@@ -44,5 +44,6 @@ def main():
               
               listSents=Quasiref.WeightCount(listSents) #получили список предложений с весами
               f=1
+
                     
 main()
