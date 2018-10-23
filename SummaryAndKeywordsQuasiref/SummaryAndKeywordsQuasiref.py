@@ -31,7 +31,7 @@ def main():
             else: 
               text=file.read()
               mystem=Mystem()
-              punctuation =[' ','','\n','-', ' \n',' – ']
+              punctuation =[' ','','\n','-', ' \n',' – ', '  ']
 
               #получаем список предложений
               listSents=SplitSent.get_sentences(text)
@@ -42,14 +42,7 @@ def main():
                  sent.token = mystem.lemmatize(sent.text) #нормализовали
                  sent.token= SplitSent.modification(sent.token, punctuation) #убрали пустые слова
               
-              quasy=Quasiref.Freq(listSents)
-              
-                   
-              
-
-                  
-              a=1
-              
-              
+              listSents=Quasiref.WeightCount(listSents) #получили список предложений с весами
+              f=1
                     
 main()
