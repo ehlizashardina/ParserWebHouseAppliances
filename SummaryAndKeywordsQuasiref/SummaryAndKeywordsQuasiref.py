@@ -1,5 +1,12 @@
 import re
-from SplitSent import SplitSent
+from SplitSent import *
+from Quasiref import *
+from pymystem3 import Mystem
+import string
+
+
+
+
 
 def main():
     print("*******")
@@ -23,11 +30,26 @@ def main():
              
             else: 
               text=file.read()
+              mystem=Mystem()
+              punctuation =[' ','','\n','-', ' \n',' – ']
+
+              #получаем список предложений
               listSents=SplitSent.get_sentences(text)
 
-              listWords=[]
+              #получаем нормализованные слова
               for sent in listSents:
-                 for  word in SplitSent.get_words(sent):
-                    listWords.append(word)
-                    print(word)
+                 sent.text=sent.text.translate(str.maketrans('', '', string.punctuation)) #убрали знаки пункутации
+                 sent.token = mystem.lemmatize(sent.text) #нормализовали
+                 sent.token= SplitSent.modification(sent.token, punctuation) #убрали пустые слова
+              
+              quasy=Quasiref.Freq(listSents)
+              
+                   
+              
+
+                  
+              a=1
+              
+              
+                    
 main()
