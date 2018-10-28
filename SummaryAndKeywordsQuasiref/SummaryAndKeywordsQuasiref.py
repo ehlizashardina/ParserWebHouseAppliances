@@ -1,6 +1,7 @@
 import re
 from SplitSent import *
 from Quasiref import *
+from TF_IDF import *
 from pymystem3 import Mystem
 import string
 
@@ -42,8 +43,11 @@ def main():
                  sent.token = mystem.lemmatize(sent.text) #нормализовали
                  sent.token= SplitSent.modification(sent.token, punctuation) #убрали пустые слова
               
-              listSents=Quasiref.WeightCount(listSents) #получили список предложений с весами
+              listSentsQref = list(listSents)
+              listSentsQref=Quasiref.WeightCount(listSentsQref) #получили список предложений с весами
               f=1
-
+              
+              listSentsTF_p = list(listSents)
+              listSentsTF_p = TF_poiss.WeightCount(listSentsTF_p)
                     
 main()

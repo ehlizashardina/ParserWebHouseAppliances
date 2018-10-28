@@ -7,8 +7,8 @@ class Sentence (object):
         self.text=text
         self.index=index
         self.weight=0
-		self.token_count=0
-		self.dictionary = {}
+        self.token_count=0
+        self.dictionary = {}
 
 
 

@@ -34,7 +34,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SummaryAndKeywordsQuasiref.py" />
-    <Compile Include="TF-IDF.py">
+    <Compile Include="TF_IDF.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
