@@ -4,7 +4,7 @@ from Quasiref import *
 from TF_IDF import *
 from pymystem3 import Mystem
 import string
-
+import copy
 
 
 
@@ -44,10 +44,11 @@ def main():
                  sent.token= SplitSent.modification(sent.token, punctuation) #убрали пустые слова
               
               listSentsQref = list(listSents)
+              listSentsTF_p = copy.deepcopy(listSents)
+              
               listSentsQref=Quasiref.WeightCount(listSentsQref) #получили список предложений с весами
               f=1
               
-              listSentsTF_p = list(listSents)
               listSentsTF_p = TF_poiss.WeightCount(listSentsTF_p)
                     
 main()

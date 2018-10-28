@@ -30,11 +30,11 @@ class TF_poiss:
 	                diction[x]+=1
                 else:
 	                diction[x] = 1
-                all_words_count+=i.token.count
+                all_words_count+=len(i.token)
                 #i.token_count+=1
 
-         for i in diction:
-             i = i / all_words_count
+         for (key, value) in diction.items():
+             diction[key] = value / all_words_count
 
          sorted_dict = sorted(diction.items(), key=lambda x:x[1], reverse=True) #сортируем по относительной частоте по убыванию
          return dict(sorted_dict)
@@ -42,7 +42,7 @@ class TF_poiss:
 	def WeightCount(listSents): #подсчёт весов предложений
          diction = TF_poiss.Freq(listSents)
          dist = poisson(4)
-         for x in range(diction.count): #считаем важность (вероятность) по распеределению
+         for x in range(len(diction)): #считаем важность (вероятность) по распеределению
             diction[x] = dist.pmf(x)
 
          for sent in listSents: #считаем вес каждого предложения
