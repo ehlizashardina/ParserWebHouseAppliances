@@ -46,12 +46,12 @@ def main():
               listSentsQref = list(listSents)
               listSentsTF_p = copy.deepcopy(listSents)
               
-              listSentsQref=Quasiref.WeightCount(listSentsQref) #получили список предложений с весами
-              f=1
+              #listSentsQref=Quasiref.WeightCount(listSentsQref) #получили список предложений с весами
+              #f=1
               
-              listSentsTF_p = TF_poiss.WeightCount(listSentsTF_p)
+              #listSentsTF_p = TF_poiss.WeightCount(listSentsTF_p)
                     
-              Quasiref.RunQuasiref(listSents,percent) #вывод текста квазиреферирование по частоте
-              
-                    
+              Quasiref.RunQuasiref(listSentsQref, percent) #вывод текста квазиреферирование по частоте
+              print('\n\r')
+              TF_poiss.RunTF_poiss(listSentsTF_p, percent) #вывод текста квазиреферирование по важности (TF-IDF)
 main()
