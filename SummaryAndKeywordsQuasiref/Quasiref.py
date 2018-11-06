@@ -33,18 +33,8 @@ class Quasiref:
                     sent.weight+=diction[x]
         return listSents 
 
-    def RunQuasiref(listSents, percent):
+    def RunQuasiref(listSents):
         listSents=Quasiref.WeightCount(listSents) #получили список предложений с весами
-        numberSent=int(round(len(listSents)*int(percent)/100))
-        listSents.sort(key=lambda x: x.weight, reverse=True)
-        result=[]
-        for x in range(numberSent):
-             result.append(listSents[x])
-        result.sort(key=lambda x: x.index)
-
-        newText = "";
-        for i in result:
-           newText += i.text;
-        print (newText)
+        return listSents
 
         

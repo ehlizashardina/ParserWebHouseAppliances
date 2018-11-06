@@ -52,16 +52,6 @@ class TF_poiss:
             sent.weight /= len(sent.token)
          return listSents
 
-    def RunTF_poiss(listSents, percent):
+    def RunTF_poiss(listSents):
         listSents=TF_poiss.WeightCount(listSents) #получили список предложений с весами
-        numberSent=int(round(len(listSents)*int(percent)/100))
-        listSents.sort(key=lambda x: x.weight, reverse=True)
-        result=[]
-        for x in range(numberSent):
-                result.append(listSents[x])
-        result.sort(key=lambda x: x.index)
-    
-        newText = "";
-        for i in result:
-            newText += i.text;
-        print (newText)
+        return listSents

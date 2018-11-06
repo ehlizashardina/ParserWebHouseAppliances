@@ -29,10 +29,13 @@ def main():
                 print ("Ошибка: Неверное число")
                 return
              
-            else: 
+            else:
               text=file.read()
               mystem=Mystem()
               punctuation =[' ','','\n','-', ' \n',' – ', '  ']
+
+              #берем обратное значение, используемое в расчетах
+              percent = 100 - int(percent)
 
               #получаем список предложений
               listSents=SplitSent.get_sentences(text)
@@ -51,7 +54,41 @@ def main():
               
               #listSentsTF_p = TF_poiss.WeightCount(listSentsTF_p)
                     
-              Quasiref.RunQuasiref(listSentsQref, percent) #вывод текста квазиреферирование по частоте
+              listSentsQref = Quasiref.RunQuasiref(listSentsQref) #вывод текста квазиреферирование по частоте
+              Qreftext = PrintSentences(listSentsQref, percent)
+              WriteToFile("qref.txt", Qreftext)
               print('\n\r')
-              TF_poiss.RunTF_poiss(listSentsTF_p, percent) #вывод текста квазиреферирование по важности (TF-IDF)
+              listSentsTF_p = TF_poiss.RunTF_poiss(listSentsTF_p) #вывод текста квазиреферирование по важности (TF-IDF)
+              Tf_ptext = PrintSentences(listSentsTF_p, percent)
+              WriteToFile("tf_p.txt", Tf_ptext)
+              file.close()
+        #finally:
+
+def PrintSentences(listSents, percent):
+        numberSent=int(round(len(listSents)*int(percent)/100))
+        if numberSent == 0:
+            numberSent = 1
+        listSents.sort(key=lambda x: x.weight, reverse=True)
+        result=[]
+        for x in range(numberSent):
+                result.append(listSents[x])
+        result.sort(key=lambda x: x.index)
+    
+        newText = "";
+        for i in result:
+            newText += i.text
+        print (newText)
+        return newText
+
+def WriteToFile(name, text):
+    try:
+        file=open(name,'w')
+    except IOError as e:
+        print("Ошибка: Не удалось открыть или создать файл")
+        return 
+    else:
+        with file:
+            file.write(text)
+            file.close()
+
 main()
