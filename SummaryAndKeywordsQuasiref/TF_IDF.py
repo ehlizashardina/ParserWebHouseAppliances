@@ -41,7 +41,8 @@ class TF_poiss:
 
     def WeightCount(listSents): #подсчёт весов предложений
          diction = TF_poiss.Freq(listSents)
-         dist = poisson(4)
+         mu = round(len(diction) * 0.618 / 1.618)
+         dist = poisson(mu)
          for x in range(len(diction)): #считаем важность (вероятность) по распеределению
             diction[x] = dist.pmf(x)
 
@@ -49,7 +50,7 @@ class TF_poiss:
             for x in sent.token:
                 if x in diction:
                     sent.weight+=diction[x]
-            sent.weight /= len(sent.token)
+            sent.weight /= len(sent.token) #берем относительный вес предложения
          return listSents
 
     def RunTF_poiss(listSents):
